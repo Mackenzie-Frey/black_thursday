@@ -7,9 +7,9 @@ class ItemTest < Minitest::Test
 	  :id          => 1,
 	  :name        => "Pencil",
 	  :description => "You can use it to write things",
-	  :unit_price  => BigDecimal.new(10.99,4),
-	  :created_at  => Time.now,
-	  :updated_at  => Time.now,
+	  :unit_price  => "1099",
+	  :created_at  => Time.now, #date string
+	  :updated_at  => Time.now, #date string
 	  :merchant_id => 2
 	})
   end

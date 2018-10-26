@@ -6,6 +6,7 @@ class Item
               :description,
               :created_at,
               :merchant_id
+              #which of these are duplicates from attr_accessor
 
   attr_accessor :name,
                 :description,
@@ -16,7 +17,7 @@ class Item
     @id = item_data[:id].to_i
     @name = item_data[:name]
     @description = item_data[:description]
-    @unit_price = BigDecimal.new(item_data[:unit_price].to_i)/100
+    @unit_price = BigDecimal.new(item_data[:unit_price], item_data[:unit_price].length) / 100
     @created_at = time_converter(item_data[:created_at])
     @updated_at = time_converter(item_data[:updated_at])
     @merchant_id = item_data[:merchant_id].to_i

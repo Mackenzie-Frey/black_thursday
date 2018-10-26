@@ -25,6 +25,7 @@ class Item
 
   def unit_price_to_dollars
     @unit_price.to_f.round(2)
+    # do we need to change the .round  ?
   end
 
   def time_converter(arguement)

@@ -137,23 +137,24 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 21_067.77, actual
   end
 
-  def test_can_get_revenue_for_each_merchant
-    actual = @sales_analyst.merchant_revenue(12335938)
-    assert_equal BigDecimal(126300.9, 7), actual
-  end
-
-  def test_it_can_get_the_top_revenue_earners_for_merchants
-   actual = @sales_analyst.top_revenue_earners(20)
-   assert_instance_of Merchant, actual.first
-   assert_equal 20, actual.length
-  end
-
   def test_it_can_get_merchants_with_pending_invoices
    actual = @sales_analyst.merchants_with_pending_invoices
    assert_instance_of Merchant, actual.first
-   assert_equal 3, actual.length
+   assert_equal 467, actual.length
   end
-  #   Which merchants have pending invoices:
-  # sales_analyst.merchants_with_pending_invoices #=> [merchant, merchant, merchant]
+
+  def test_can_get_revenue_for_each_merchant
+    actual = @sales_analyst.revenue_by_merchant(12335938)
+    assert_equal BigDecimal(126300.9, 7), actual
+  end
+
+  def test_it_can_get_most_sold_item_for_merchant
+    expected = @sales_analyst.most_sold_item_for_merchant(12334189)
+    assert_instance_of Item, expected
+    assert_qual 1, expected.length
+    expected_2 = @sales_analyst.most_sold_item_for_merchant(12337105)
+    assert_instance_of Item, expected_2
+    assert_qual 4, expected_2.length
+  end
 
 end

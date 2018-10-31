@@ -168,13 +168,19 @@ class SalesAnalystTest < Minitest::Test
   #   assert_equal BigDecimal(126300.9, 7), actual
   # end
 
-  # def test_it_can_get_most_sold_item_for_merchant
-  #   actual = @sales_analyst.most_sold_item_for_merchant(12334189)
-  #   assert_instance_of Item, actual
-  #   assert_equal 1, actual.length
-  #   actual_2 = @sales_analyst.most_sold_item_for_merchant(12337105)
-  #   assert_instance_of Item, actual_2
-  #   assert_equal 4, actual_2.length
-  # end
+  def test_it_can_get_the_top_revenue_earners_for_merchants
+   actual = @sales_analyst.top_revenue_earners(20)
+   assert_instance_of Merchant, actual.first
+   assert_equal 20, actual.length
+  end
+
+  def test_it_can_get_most_sold_item_for_merchant
+    actual = @sales_analyst.most_sold_item_for_merchant(12334189)
+    assert_instance_of Item, actual
+    assert_equal 1, actual.length
+    actual_2 = @sales_analyst.most_sold_item_for_merchant(12337105)
+    assert_instance_of Item, actual_2
+    assert_equal 4, actual_2.length
+  end
 
 end

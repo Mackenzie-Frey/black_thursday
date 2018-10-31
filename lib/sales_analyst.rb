@@ -193,8 +193,8 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(number = 20)
-    # revenue_array = []
-    @merchants.inject ([]) do |revenue_array, merchant|
+    revenue_array = []
+    @merchants.each do |merchant|
       revenue_array << {merchant: merchant, revenue: revenue_by_merchant(merchant.id)}
     end
     revenue_array.sort_by! do |item|
@@ -202,17 +202,18 @@ class SalesAnalyst
     end
     top_merchants = []
     number.times do
-      top_merchants << revenue_array.pop[:merchant]
+    top_merchants << revenue_array.pop[:merchant]
     end
     top_merchants
   end
 
   def most_sold_item_for_merchant(merchant_id)
-    @invoices.find_all do |invoice|
+    merchant_invoices = @invoices.find_all do |invoice|
      invoice.merchant_id == merchant_id
     end
+    merchant_invoices.map do |invoice|
+      invoice.item_id == item_id
+    end
   end
-
-
 
 end
